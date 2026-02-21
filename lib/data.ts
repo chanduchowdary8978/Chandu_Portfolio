@@ -88,7 +88,7 @@ export const projects: Project[] = [
     tags: ["Optimization", "ML"],
     stack: ["Python", "NumPy", "PyTorch", "Matplotlib"],
     links: [
-      { label: "GitHub", href: "https://github.com/chanduchowdary8978" },
+      { label: "GitHub", href: "https://github.com/chanduchowdary8978/Convex-Optimization-Math-Essentials-for-Linear-Models" },
     ],
     year: "2026",
     featured: true,
