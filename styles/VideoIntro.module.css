@@ -1,0 +1,293 @@
+/* ============================================================
+   VideoIntro.module.css — Cinematic Hero
+   ============================================================ */
+
+/* ── Root section ───────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #0c0906;
+  animation: heroFadeIn 1.2s ease-out both;
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Ambient blurred background ─────────────────────────────── */
+.ambientVideo {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  filter: blur(40px) brightness(0.28) saturate(1.3);
+  transform: scale(1.05);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ── Main foreground video ──────────────────────────────────── */
+.mainVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ── Gradient overlays ──────────────────────────────────────── */
+/* Heavy left fade — text lives here */
+.gradientLeft {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    rgba(8, 6, 4, 0.92) 0%,
+    rgba(8, 6, 4, 0.65) 42%,
+    rgba(8, 6, 4, 0.20) 70%,
+    rgba(8, 6, 4, 0.10) 100%
+  );
+  pointer-events: none;
+}
+
+/* Top + bottom cinematic bars */
+.gradientVert {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 6, 4, 0.55) 0%,
+    transparent 22%,
+    transparent 65%,
+    rgba(8, 6, 4, 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+/* Warm edge vignette */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 110% 100% at 65% 50%,
+    transparent 45%,
+    rgba(8, 4, 2, 0.50) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Three.js canvas ────────────────────────────────────────── */
+.canvasLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ── Content wrapper ────────────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ── Top tagline ────────────────────────────────────────────── */
+.tagline {
+  padding: 2.25rem 2.5rem 0;
+  opacity: 0;
+}
+
+.taglineText {
+  font-size: 0.6rem;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 100, 0.55);   /* warm orange tint — matches video */
+}
+
+/* ── Name + copy block ──────────────────────────────────────── */
+.nameBlock {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;        /* anchor text toward bottom-left */
+  padding: 0 2.5rem 3rem;
+}
+
+.nameInner {
+  max-width: 680px;
+}
+
+/* Pre-name label */
+.preLabel {
+  display: block;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(244, 113, 24, 0.70);   /* --primary orange */
+  margin-bottom: 0.85rem;
+  opacity: 0;
+}
+
+/* Main name */
+.name {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-weight: 900;
+  /* Reduced from 15vw — still impactful, not overwhelming */
+  font-size: clamp(3rem, 8.5vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  text-shadow:
+    0 0 60px rgba(244, 113, 24, 0.20),
+    0 0 120px rgba(244, 113, 24, 0.08);
+}
+
+/* Subtitle / role — mono, smaller, warm */
+.role {
+  margin-top: 1.2rem;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0;
+}
+
+/* Short bio line — slightly larger, human, warm */
+.bio {
+  margin-top: 1.1rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(232, 220, 205, 0.60);
+  max-width: 380px;
+  opacity: 0;
+}
+
+/* ── Bottom bar ─────────────────────────────────────────────── */
+.bottomBar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 2.5rem 2.25rem;
+  opacity: 0;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+}
+
+.scrollIndicator:hover .scrollLabel { color: #fff; }
+
+.scrollLabel {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.3s;
+}
+
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.scrollPulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: rgba(244, 113, 24, 0.9);   /* orange pulse — not plain white */
+  animation: scrollPulse 1.9s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(260%); }
+}
+
+/* ── Mute controls ──────────────────────────────────────────── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.soundHint {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 100, 0.80);
+  animation: pulseFade 2.2s ease-in-out infinite;
+}
+
+@keyframes pulseFade {
+  0%, 100% { opacity: 0.40; }
+  50%       { opacity: 1; }
+}
+
+.muteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 113, 24, 0.25);
+  background: rgba(244, 113, 24, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.muteBtn:hover {
+  background: rgba(244, 113, 24, 0.20);
+  border-color: rgba(244, 113, 24, 0.55);
+  transform: scale(1.1);
+}
+.muteBtn:active { transform: scale(0.96); }
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .tagline    { padding: 1.75rem 1.5rem 0; }
+  .nameBlock  { padding: 0 1.5rem 2rem; }
+  .bottomBar  { padding: 0 1.5rem 1.75rem; }
+  .soundHint  { display: none; }
+  .bio        { display: none; }
+}

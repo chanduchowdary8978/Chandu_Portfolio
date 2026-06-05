@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ============================================================
+   CINEMATIC WARM THEME
+   Pulled directly from the video's visual mood:
+     - Deep warm black bg (practical orange lighting on walls)
+     - Warm orange as the single accent (matches practical light)
+     - Off-white warm foreground (not pure white — too cold)
+     - Warm-tinted borders and cards (no cool grays anywhere)
+   ============================================================ */
+@layer base {
+  :root {
+    /* ── Core surfaces ── */
+    --background:         22 18% 4%;    /* #0c0906  deep warm black     */
+    --foreground:         24 14% 88%;   /* #e8e0d8  warm off-white       */
+
+    --card:               22 14% 7%;    /* #131009  slightly lifted bg   */
+    --card-foreground:    24 14% 88%;
+
+    --popover:            22 14% 7%;
+    --popover-foreground: 24 14% 88%;
+
+    /* ── Primary — warm orange (matches practical light in video) ── */
+    --primary:            24 88% 52%;   /* #f47118  warm orange          */
+    --primary-foreground: 22 18% 5%;    /* very dark — text on btn       */
+
+    /* ── Secondary / muted surfaces ── */
+    --secondary:          22 12% 11%;   /* #1c1712  warm dark surface    */
+    --secondary-foreground: 24 10% 78%; /* #cec4b8  softer warm text     */
+
+    --muted:              22 10% 14%;   /* #231e19  card hover etc       */
+    --muted-foreground:   24 8%  50%;   /* #8a7e74  warm mid-gray        */
+
+    /* ── Accent (same as primary — single accent philosophy) ── */
+    --accent:             24 88% 52%;
+    --accent-foreground:  22 18% 5%;
+
+    /* ── Utility ── */
+    --destructive:        5 78% 56%;    /* warm red — not cool            */
+    --destructive-foreground: 24 14% 92%;
+
+    --border:             22 14% 13%;   /* #221c17  warm subtle border   */
+    --input:              22 12% 15%;   /* #261f19                       */
+    --ring:               24 88% 52%;
+
+    /* ── Chart — warm palette ── */
+    --chart-1: 24  88% 52%;   /* orange                */
+    --chart-2: 40  85% 55%;   /* amber                 */
+    --chart-3: 10  78% 52%;   /* warm red              */
+    --chart-4: 32  72% 48%;   /* burnt sienna          */
+    --chart-5: 50  80% 60%;   /* warm yellow           */
+
+    --radius: 0.5rem;
+
+    /* ── Sidebar (same warm surface) ── */
+    --sidebar-background:        22 14% 7%;
+    --sidebar-foreground:        24 14% 88%;
+    --sidebar-primary:           24 88% 52%;
+    --sidebar-primary-foreground:22 18% 5%;
+    --sidebar-accent:            22 10% 14%;
+    --sidebar-accent-foreground: 24 14% 88%;
+    --sidebar-border:            22 14% 13%;
+    --sidebar-ring:              24 88% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Barely-visible warm noise grain — ties into film/cinematic feel */
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    background-size: 180px;
+    background-repeat: repeat;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── Animations (unchanged) ─────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in-up   { animation: fade-in-up    0.6s ease-out both; }
+.animate-fade-in      { animation: fade-in        0.5s ease-out both; }
+.animate-slide-in-left{ animation: slide-in-left  0.6s ease-out both; }
+
+/* ── Cinematic scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar        { width: 5px; background: hsl(var(--background)); }
+::-webkit-scrollbar-thumb  { background: hsl(var(--border)); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(22 20% 22%); }
+
+/* ── Section divider — subtle warm line ─────────────────────── */
+.section-divider {
+  border-top: 1px solid hsl(var(--border));
+}
