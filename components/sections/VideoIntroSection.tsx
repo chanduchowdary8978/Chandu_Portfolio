@@ -9,8 +9,7 @@ const CinematicLayer = dynamic(
   { ssr: false }
 )
 
-const BASE      = process.env.NEXT_PUBLIC_BASE_PATH ?? ""
-const VIDEO_SRC = `${BASE}/intro.mp4`
+const VIDEO_SRC = "/Chandu_Portfolio/intro.mp4"
 
 export function VideoIntroSection() {
   const sectionRef = useRef<HTMLElement>(null)
