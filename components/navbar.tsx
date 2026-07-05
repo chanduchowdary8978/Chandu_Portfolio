@@ -9,14 +9,15 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Blog", href: "#blog" },
-  { label: "Roadmap", href: "#roadmap" },
+  { label: "Research", href: "#research" },
+  { label: "Writing", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeHref, setActiveHref] = useState("#about")
 
   useEffect(() => {
     // Trigger backdrop only after scrolling past the hero (90vh)
@@ -25,6 +26,23 @@ export function Navbar() {
     onScroll() // run once on mount
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sections = navLinks
+      .map((link) => document.querySelector(link.href))
+      .filter((el): el is Element => el !== null)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((entry) => entry.isIntersecting)
+        if (visible) setActiveHref(`#${visible.target.id}`)
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -50,19 +68,26 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={cn(
-                  "font-mono text-sm transition-colors hover:text-primary",
-                  scrolled ? "text-muted-foreground" : "text-white/80 hover:text-white"
-                )}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeHref === link.href
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={cn(
+                    "font-mono text-sm transition-colors hover:text-primary",
+                    isActive
+                      ? "text-primary"
+                      : scrolled
+                        ? "text-muted-foreground"
+                        : "text-white/80 hover:text-white"
+                  )}
+                >
+                  {link.label}
+                </a>
+              </li>
+            )
+          })}
         </ul>
 
         {/* Mobile toggle */}

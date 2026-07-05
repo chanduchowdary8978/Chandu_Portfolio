@@ -9,9 +9,9 @@ export function BlogSection() {
       <div className="mx-auto max-w-6xl">
         <AnimateOnScroll>
           <SectionHeader
-            label="04 / Blog"
-            title="Notes & Writing - On LinkedIn"
-            description="Thoughts on machine learning, engineering, and the craft of building AI systems."
+            label="05 / Writing"
+            title="Writing"
+            description="Technical writing on optimization, deep learning, and distributed training systems."
           />
         </AnimateOnScroll>
 

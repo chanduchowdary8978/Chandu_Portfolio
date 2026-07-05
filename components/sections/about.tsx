@@ -4,7 +4,7 @@ import { Briefcase, GraduationCap, MapPin } from "lucide-react"
 
 const highlights = [
   { icon: GraduationCap, label: "M.Tech Mathematics & Computing, NIT Jalandhar" },
-  { icon: Briefcase, label: "ML, Optimization & MLOps Focus" },
+  { icon: Briefcase, label: "Machine Learning & ML Systems" },
   { icon: MapPin, label: "India" },
 ]
 
@@ -16,7 +16,7 @@ export function AboutSection() {
           <SectionHeader
             label="01 / About"
             title="About Me"
-            description="I focus on understanding why models work, not just how to use them — from gradients and optimization to ML systems and MLOps."
+            description="How I think about building and shipping ML systems."
           />
         </AnimateOnScroll>
 
@@ -24,24 +24,24 @@ export function AboutSection() {
           <AnimateOnScroll className="md:col-span-3" delay={100}>
             <div className="space-y-4 leading-relaxed text-muted-foreground">
               <p>
-                I am a Mathematics & Computing student at NIT Jalandhar focused on
-                understanding machine learning models from first principles. I care deeply
-                about the mathematical structure behind optimization, gradients, and
-                generalization — not just using high-level APIs.
+                I work at the intersection of machine learning and systems engineering.
+                Training a model is only half the job — the other half is making it
+                reliable enough to run in production, which shapes most of what I build:
+                distributed training, calibrated predictions, and inference services that
+                hold up under load.
               </p>
               <p>
-                My work spans two directions: (1) core ML and optimization, where I study and
-                implement gradient-based methods, convergence behavior, and conditioning
-                effects, and (2) ML systems and MLOps, where I design practical pipelines
-                involving data ingestion, training, evaluation, and deployment. Recently, I
-                have been building Kafka-based data pipelines and experimenting with
-                end-to-end MLOps workflows.
+                The most recent example is a fraud detection system trained with LocalSGD
+                across simulated data centers and served through a FastAPI endpoint in
+                Docker. Before that, an LSTM forecasting pipeline built during an internship
+                at ISRO, and ongoing research into distributed optimization and spatial
+                queueing systems.
               </p>
               <p>
-                I enjoy turning theory into reliable systems through careful experimentation
-                in Python and PyTorch. My long-term goal is to become an AI engineer who
-                combines mathematical rigor with strong systems thinking — building models
-                that are not only accurate, but also stable, interpretable, and deployable.
+                Underneath it is a math background — linear algebra, probability,
+                optimization — that I use less as theory and more as a debugging tool: why
+                a model isn't converging, why a distributed job is slower than it should
+                be, and what to do about it.
               </p>
             </div>
           </AnimateOnScroll>

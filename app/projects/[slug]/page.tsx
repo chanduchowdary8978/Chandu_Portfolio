@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const project = projects.find((p) => p.slug === slug)
   if (!project) return { title: "Project Not Found" }
   return {
-    title: `${project.title} | Alex Chen`,
+    title: `${project.title} | Bondu Chandu`,
     description: project.description,
   }
 }
@@ -82,9 +82,11 @@ export default async function ProjectPage({
             <h2 className="mb-4 font-mono text-sm uppercase tracking-widest text-primary">
               Overview
             </h2>
-            <p className="leading-relaxed text-muted-foreground">
-              {project.longDescription}
-            </p>
+            <div className="space-y-4 leading-relaxed text-muted-foreground">
+              {project.longDescription.split("\n\n").map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
           </div>
 
           {/* Tech stack */}

@@ -7,8 +7,7 @@ import { SectionHeader } from "@/components/section-header"
 import { AnimateOnScroll } from "@/components/animate-on-scroll"
 import { projects, type ProjectTag } from "@/lib/data"
 
-// These must match ProjectTag in lib/data.ts
-const allTags: ProjectTag[] = ["Optimization", "MLOps", "Systems", "Time Series", "ML"]
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))) as ProjectTag[]
 
 export function ProjectsSection() {
   const [activeTag, setActiveTag] = useState<ProjectTag | "All">("All")
@@ -25,7 +24,7 @@ export function ProjectsSection() {
           <SectionHeader
             label="03 / Projects"
             title="Selected Work"
-            description="Projects spanning optimization, machine learning, and ML systems"
+            description="Machine learning and ML systems projects, from model training to production deployment."
           />
         </AnimateOnScroll>
 
@@ -90,7 +89,7 @@ export function ProjectsSection() {
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-md bg-secondary px-2 py-1 text-xs text-muted-foreground"
+                      className="rounded-md bg-secondary px-2 py-1 font-mono text-xs text-muted-foreground"
                     >
                       {tag}
                     </span>

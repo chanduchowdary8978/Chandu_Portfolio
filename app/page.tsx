@@ -4,8 +4,8 @@ import { VideoIntroSection } from "@/components/sections/VideoIntroSection"
 import { AboutSection } from "@/components/sections/about"
 import { SkillsSection } from "@/components/sections/skills"
 import { ProjectsSection } from "@/components/sections/projects"
+import { ResearchSection } from "@/components/sections/research"
 import { BlogSection } from "@/components/sections/blog"
-import { RoadmapSection } from "@/components/sections/roadmap"
 import { ContactSection } from "@/components/sections/contact"
 
 export default function Page() {
@@ -18,8 +18,8 @@ export default function Page() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
+        <ResearchSection />
         <BlogSection />
-        <RoadmapSection />
         <ContactSection />
       </main>
       <Footer />

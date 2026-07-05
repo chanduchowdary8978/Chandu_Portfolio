@@ -133,11 +133,11 @@ export function VideoIntroSection() {
               Chandu
             </h1>
             <p ref={roleRef} className={styles.role}>
-              Machine Learning&nbsp;&nbsp;·&nbsp;&nbsp;Optimization&nbsp;&nbsp;·&nbsp;&nbsp;MLOps
+              Machine Learning&nbsp;&nbsp;·&nbsp;&nbsp;Deep Learning&nbsp;&nbsp;·&nbsp;&nbsp;ML Systems
             </p>
             <p ref={bioRef} className={styles.bio}>
-              I study why models work — not just how to use them.
-              Gradients, convergence, and systems that ship.
+              Training the model is the easy part. I care about what keeps
+              it accurate once it's running in production.
             </p>
           </div>
         </div>
